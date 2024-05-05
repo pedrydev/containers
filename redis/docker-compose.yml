@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  redis-master:
+    image: redis:7
+    container_name: redis-master
+    restart: always
+    environment:
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=redismaster
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+  redis-replica:
+    image: redis:7
+    ports:
+      - '6379'
+    depends_on:
+      - redis-master
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PASSWORD=redismaster
+      - REDIS_MASTER_PORT_NUMBER=6379
+      - REDIS_PASSWORD=redisreplica
+
+volumes:
+  redis_data:
