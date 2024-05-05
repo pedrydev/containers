@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  mssql:
+    container_name: mssql
+    build:
+      context: .
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=mssqlADMIN1234,.
+    ports:
+      - 1433:1433
+    hostname: mssql
+    platform: linux/amd64
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+      - mssql_logs:/var/opt/mssql/log
+      - mssql_secrets:/var/opt/mssql/secrets
+
+volumes:
+  mssql_data:
+  mssql_logs:
+  mssql_secrets:
