@@ -10,6 +10,11 @@ terraform {
 module "mongodb" {
   source = "./mongodb"
 
-  mongodb-alias = var.mongodb-alias
   mongodb-port  = var.mongodb-port
+}
+
+module "redis" {
+  source = "./redis"
+
+  redis-port = var.redis-port
 }

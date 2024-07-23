@@ -14,7 +14,7 @@ resource "docker_image" "mongodb" {
 
 resource "docker_container" "mongodb" {
   image   = docker_image.mongodb.image_id
-  name    = var.mongodb-alias
+  name    = "mongodb"
   hostname = "mongodb"
   restart = "always"
   env = [
