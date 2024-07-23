@@ -10,11 +10,18 @@ terraform {
 module "mongodb" {
   source = "./mongodb"
 
-  mongodb-port  = var.mongodb-port
+  mongodb-port = var.mongodb-port
 }
 
 module "redis" {
   source = "./redis"
 
   redis-port = var.redis-port
+}
+
+module "rabbitmq" {
+  source = "./rabbitmq"
+
+  rabbitmq-port            = var.rabbitmq-port
+  rabbitmq-management-port = var.rabbitmq-management-port
 }
