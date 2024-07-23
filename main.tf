@@ -25,3 +25,9 @@ module "rabbitmq" {
   rabbitmq-port            = var.rabbitmq-port
   rabbitmq-management-port = var.rabbitmq-management-port
 }
+
+module "minio" {
+  source = "./minio"
+
+  minio-port = var.minio-port
+}
