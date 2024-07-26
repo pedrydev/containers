@@ -31,3 +31,7 @@ module "minio" {
 
   minio-port = var.minio-port
 }
+
+module "aspire" {
+  source = "./aspire"
+}
