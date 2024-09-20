@@ -1,0 +1,8 @@
+services:
+  pappercut:
+   container_name: pappercut
+   image: changemakerstudiosus/papercut-smtp
+   restart: always
+   ports:
+     - '25:25'
+     - '8090:80'
