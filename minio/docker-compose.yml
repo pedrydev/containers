@@ -1,6 +1,7 @@
 # Settings and configurations that are common for all containers
 x-minio-common: &minio-common
   image: quay.io/minio/minio
+  restart: always
   command: server --console-address ":9001" http://minio{1...2}/data{1...2}
   expose:
     - "9000"
@@ -35,6 +36,7 @@ services:
   nginx:
     image: nginx:alpine
     hostname: nginx
+    restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
