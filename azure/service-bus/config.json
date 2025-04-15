@@ -1,0 +1,88 @@
+{
+    "UserConfig": {
+        "Namespaces": [
+            {
+                "Name": "ns1",
+                "Queues": [
+                    {
+                        "Name": "q1",
+                        "Properties": {
+                            "DeadLetteringOnMessageExpiration": false,
+                            "DefaultMessageTimeToLive": "PT1H",
+                            "DuplicateDetectionHistoryTimeWindow": "PT20S",
+                            "ForwardDeadLetteredMessagesTo": "",
+                            "ForwardTo": "",
+                            "LockDuration": "PT1M",
+                            "MaxDeliveryCount": 3,
+                            "RequiresDuplicateDetection": false,
+                            "RequiresSession": false
+                        }
+                    }
+                ],
+                "Topics": [
+                    {
+                        "Name": "t1",
+                        "Properties": {
+                            "DefaultMessageTimeToLive": "PT1H",
+                            "DuplicateDetectionHistoryTimeWindow": "PT20S",
+                            "RequiresDuplicateDetection": false
+                        },
+                        "Subscriptions": [
+                            {
+                                "Name": "t1.s1",
+                                "Properties": {
+                                    "DeadLetteringOnMessageExpiration": false,
+                                    "DefaultMessageTimeToLive": "PT1H",
+                                    "LockDuration": "PT1M",
+                                    "MaxDeliveryCount": 3,
+                                    "ForwardDeadLetteredMessagesTo": "",
+                                    "ForwardTo": "",
+                                    "RequiresSession": false
+                                },
+                                "Rules": [
+                                    {
+                                        "Name": "app-prop-filter-1",
+                                        "Properties": {
+                                            "FilterType": "Correlation",
+                                            "CorrelationFilter": {
+                                                "ContentType": "application/json"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "Name": "t1.s2",
+                                "Properties": {
+                                    "DeadLetteringOnMessageExpiration": false,
+                                    "DefaultMessageTimeToLive": "PT1H",
+                                    "LockDuration": "PT1M",
+                                    "MaxDeliveryCount": 3,
+                                    "ForwardDeadLetteredMessagesTo": "",
+                                    "ForwardTo": "",
+                                    "RequiresSession": false
+                                },
+                                "Rules": [
+                                    {
+                                        "Name": "user-prop-filter-1",
+                                        "Properties": {
+                                            "FilterType": "Correlation",
+                                            "CorrelationFilter": {
+                                                "Properties": {
+                                                    "prop1": "value1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Logging": {
+            "Type": "File"
+        }
+    }
+}
