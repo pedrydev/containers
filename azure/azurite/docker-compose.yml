@@ -1,0 +1,36 @@
+services:
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite
+    container_name: azurite
+    restart: always
+    command: [
+      "azurite",
+      "-l",
+      "/workspace",
+      "-d",
+      "/workspace/debug.log",
+      "--blobPort", "7777",
+      "--blobHost", "0.0.0.0",
+      "--blobKeepAliveTimeout", "5",
+      "--queuePort", "8888",
+      "--queueHost", "0.0.0.0",
+      "--queueKeepAliveTimeout", "5",
+      "--tablePort", "9999",
+      "--tableHost", "0.0.0.0",
+      "--tableKeepAliveTimeout", "5",
+      "--loose",
+      "--skipApiVersionCheck",
+      "--disableProductStyleUrl",
+      "--disableTelemetry"
+    ]
+    environment:
+      - name=value
+    ports:
+      - "7777:7777"
+      - "8888:8888"
+      - "9999:9999"
+    volumes:
+      - azurite:/workspace
+
+volumes:
+  azurite:
