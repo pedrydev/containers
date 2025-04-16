@@ -1,9 +1,8 @@
 name: microsoft-azure-servicebus-emulator
 services:
   emulator:
-    container_name: "servicebus"
+    container_name: servicebus
     image: mcr.microsoft.com/azure-messaging/servicebus-emulator
-    pull_policy: always
     volumes:
       - "./config.json:/ServiceBus_Emulator/ConfigFiles/Config.json"
     ports:
