@@ -1,0 +1,14 @@
+services:
+  modbus:
+    image: oitc/modbus-server
+    container_name: modbus-server
+    restart: no
+    ports:
+      - "5020:5020"
+  opcua:
+    image: mcr.microsoft.com/iotedge/opc-plc:latest
+    container_name: opc-plc
+    restart: no
+    command: ["--pn=50000", "--autoaccept", "--ut"]
+    ports:
+      - "50000:50000"
