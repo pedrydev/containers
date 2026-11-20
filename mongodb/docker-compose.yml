@@ -2,15 +2,19 @@ services:
   mongodb:
     container_name: mongodb
     image: mongo:6
-    restart: always
-    hostname: mongodb
+    restart: no
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongoadmin
-      MONGO_INITDB_ROOT_PASSWORD: mongoadmin
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: mongodb
     ports:
       - "27017:27017"
     volumes:
-      - mongodb:/data/db
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
-  mongodb:
+  mongodb_data:
